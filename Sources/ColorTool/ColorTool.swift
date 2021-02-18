@@ -3,6 +3,8 @@ import Foundation
 public struct ColorTool {
     //MARK: - RGB string to RGB array
     public static func toRGBArray(RGBString: String) -> [Int]{
+        //takes the string that is seperated by a comma and puts them in a new array with the deleminator being a ","
+        //once it does that it will will return the values which is red - RGBIntArray[0], green - RGBIntArray[1], blue - RGBIntArray[2]
         let RGBStringArray : [String] = RGBString.components(separatedBy: ",")
         var RGBIntArray : [Int] = []
         for val in RGBStringArray{
@@ -12,7 +14,7 @@ public struct ColorTool {
     }
     
     //MARK: - RGB To Hex
-    //overloaded method to allow multiple types of parameters in what ever format the user needs.
+    //overloaded method to allow multiple types of parameters in what ever format the user needs. But all just call the primary method in the correct format
     public static func RGBToHex(RGBcolor: RGBColor) -> String{
         return RGBToHex(red: Int(RGBcolor.red), green: Int(RGBcolor.green), blue: Int(RGBcolor.blue))
     }
@@ -22,7 +24,7 @@ public struct ColorTool {
     }
    public static func RGBToHex(red: Int, green: Int, blue: Int) -> String {
         var hexValue: String = "#"
-        
+        //first this will verify that the color value is between 0 and 255 and if not it will print an error otherwise it appends the color value in hex form to hexValue. by printing it the user wont have to put the color in a try catch.
         if(0..<256 ~= red){
             hexValue += String(format:"%02X", red)
         } else {
@@ -173,9 +175,6 @@ public struct ColorTool {
         return String(format:"%03.0f,%03.0f,%03.0f", r,g,b)
     }
     public static func CMYKToHex(C: Int, M: Int, Y: Int, K: Int) -> String{
-        //convert to rgb
-        //convert to hex
-        //return
         return RGBToHex(RGBString: CMYKToRGBString(C: C, M: M, Y: Y, K: K))
     }
 
