@@ -4,4 +4,5 @@ enum ColorError: Error{
     case RGBOutOfBoundsError(Error: String)
     case RBGFormattingError(Error: String)
     case HEXFormattingError(Error: String)
+    case CMYKOutOfBoundsError(Error: String)
 }
