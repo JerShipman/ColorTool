@@ -21,10 +21,10 @@ public struct ColorTool {
         return RGBToHex(red: rgbArray[0], green: rgbArray[1], blue: rgbArray[2])
     }
    public static func RGBToHex(red: Int, green: Int, blue: Int) -> String {
-        var hexValue: String = ""
+        var hexValue: String = "#"
         
         if(0..<256 ~= red){
-            hexValue = String(format:"%02X", red)
+            hexValue += String(format:"%02X", red)
         } else {
             print(ColorError.RGBOutOfBoundsError(Error: "red value is not between 0 and 255"))
             return ""
@@ -172,8 +172,11 @@ public struct ColorTool {
         }
         return String(format:"%03.0f,%03.0f,%03.0f", r,g,b)
     }
-    public static func CMYKToHex(){
-        
+    public static func CMYKToHex(C: Int, M: Int, Y: Int, K: Int) -> String{
+        //convert to rgb
+        //convert to hex
+        //return
+        return RGBToHex(RGBString: CMYKToRGBString(C: C, M: M, Y: Y, K: K))
     }
 
     
