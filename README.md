@@ -16,24 +16,47 @@ Currently ColorTool supports:*More options coming soon and features*
 * CMYK to Hex
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->Hex(String)
     
-    ColorTool has built in error management to ensure a user is within the correct bounds and if not it will print an error.
+    ColorTool has built in error management to ensure a user is within the correct bounds. If the parameters are not valid it will print the error to the console.
 
 ## Using ColorTool
-The format to use a func requiring a String is to use a comma with no trailing space as a delimiter.
- Example:
+to make a call to a ColorTool function
+
+ **Standard pass RGB to Hex:**
+```swift
+ColorTool.RGBToHex(red: 62, green: 62, blue: 62) 
+// returns "#3E3E3E"
+```
+**Pass a RGBColor to Hex:**
+```swift
+let myColor = RGBColor(red: 14, green: 14, blue: 14)
+ColorTool.RGBToHex(RGBcolor: myColor) 
+// returns "#0E0E0E"
+```
+**Pass a RGB String with commas with no trailing spaces as a delimiter:**
 ```swift
 ColorTool.RGBToHex(RGBString: "11,24,156")
+// returns "#0B1838"
 ```
-To get access to RGB String or CMYK String as an array just call the toRGBArray() or toCMYKArray method.
+
+To get access to RGB String or CMYK String as an array just call the toRGBArray() or toCMYKArray() method. *Both functions will take a string with the a comma delimeter*
  Example:
+ **to RGB array**
+```swift
+ColorTool.ToRGBArray("255,255,255") 
+// returns [255, 255, 255]
+//where the output is RGBarray[0] = Red, RGBarray[1] = Green. and RGBarray[2] = Blue
+```
+or if you need to do a conversion first before passing a string.
 ```swift
 ColorTool.toRGBArray(RGBString: ColorTool.CMYKToRGB(C: 0, M: 68, Y: 76, K: 47))
-//output is RGBarray[0] = Red, RGBarray[1] = Green. and RGBarray[2] = Blue
+// returns [135, 43, 32]
+// where the output is RGBarray[0] = Red, RGBarray[1] = Green. and RGBarray[2] = Blue
 ```
-or to get a CMYK array
+**to CMYK array**
 ```swift
 ColorTool.toCMYKArray(CMYKString: ColorTool.HexToCMYK(Hex: "#FFFFFF"))
-//output is CMYKarray[0] = Cyan, CMYKarray[1] = Magenta, CMYKarray[2] = Yellow, and CMYKarray[3] = Black
+// returns [0, 0, 0, 0]
+// whree the output is CMYKarray[0] = Cyan, CMYKarray[1] = Magenta, CMYKarray[2] = Yellow, and CMYKarray[3] = Black
 ```
 ## Installing ColorTool
 It's easier to install the ColorTool package to your XCode project than baking an apple pie. *Seriously*
