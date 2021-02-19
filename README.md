@@ -3,19 +3,23 @@ This is a nice Swift package that allows users to convert color types to other c
 Currently ColorTool supports: 
 
 * RGB to Hex
-    * RBG(String) -> Hex(String)
     * RGB(Red: Int, Green: Int, Blue: Int) -> Hex(String)
+    * RBG(String) -> Hex(String)
     * RGB(RGBColor) -> Hex(String)
 * RGB to CMYK
     * RGB(Red: Int, Green: Int, Blue: Int) -> CMYK(String)
+    * RGB(String) -> CMYK(String)
+    * RGB(RGBColor) -> CMYK(String)
 * Hex to RGB
     * Hex(String) -> RGB(String)
 * Hex to CMYK
     * Hex(String) -> CMYK(String)
 * CMYK to RGB
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->RGB(String)
+    * CMYK(String)->RGB(String)
 * CMYK to Hex
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->Hex(String)
+    * CMYK(String)->Hex(String)
  
     *More options and features coming soon*
     
@@ -40,26 +44,20 @@ ColorTool.RGBToHex(RGBcolor: myColor)
 ColorTool.RGBToHex(RGBString: "11,24,156")
 // returns "#0B1838"
 ```
-
-To get access to RGB String or CMYK String as an array just call the toRGBArray() or toCMYKArray() method. *Both functions will take a string with the a comma delimeter*
- Example:
- **to RGB array**
+**To Color Array**
+To get convert a color string to a color array you will need to pass the string to the function ToColorArray
+    *Function will take a string with the a comma delimeter and no tailing spaces*
+    Example:
 ```swift
-ColorTool.ToRGBArray("255,255,255") 
+ColorTool.ToColorArray("255,255,255") 
 // returns [255, 255, 255]
-// where the output is Red = RGBarray[0], Green = RGBarray[1], and Blue = RGBarray[2]
+// where the output is Red = ColorArray[0], Green = ColorArray[1], and Blue = ColorArray[2]
 ```
 or if you need to do a conversion first before passing a string.
 ```swift
-ColorTool.toRGBArray(RGBString: ColorTool.CMYKToRGB(C: 0, M: 68, Y: 76, K: 47))
+ColorTool.toColorAray(ColorString: ColorTool.CMYKToRGB(C: 0, M: 68, Y: 76, K: 47))
 // returns [135, 43, 32]
-// where the output is  Red = RGBarray[0], Green = RGBarray[1], and Blue = RGBarray[2]
-```
-**to CMYK array**
-```swift
-ColorTool.toCMYKArray(CMYKString: ColorTool.HexToCMYK(Hex: "#FFFFFF"))
-// returns [0, 0, 0, 0]
-// where the output is Cyan = CMYKarray[0], Magenta = CMYKarray[1], Yellow = CMYKarray[2], and Black = CMYKarray[3]
+// where the output is  Red = ColorArray[0], Green = ColorArray[1], and Blue = ColorArray[2]
 ```
 ## Installing ColorTool
 It's easier to install the ColorTool package to your XCode project than baking an apple pie. *Seriously*

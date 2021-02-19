@@ -1,26 +1,27 @@
 import Foundation
-
 public struct ColorTool {
-    //MARK: - RGB string to RGB array
-    public static func toRGBArray(RGBString: String) -> [Int]{
+    //MARK: - ColorString to ColorArray
+    public static func toColorArray(ColorString: String) -> [Int]{
         //takes the string that is seperated by a comma and puts them in a new array with the deleminator being a ","
         //once it does that it will will return the values which is red - RGBIntArray[0], green - RGBIntArray[1], blue - RGBIntArray[2]
-        let RGBStringArray : [String] = RGBString.components(separatedBy: ",")
-        var RGBIntArray : [Int] = []
-        for val in RGBStringArray{
-            RGBIntArray.append(Int(val)!)
+        let StringArray : [String] = ColorString.components(separatedBy: ",")
+        var IntArray : [Int] = []
+        for val in StringArray{
+            IntArray.append(Int(val)!)
         }
-        return RGBIntArray
+        return IntArray
     }
-    
-    //MARK: - RGB To Hex
-    //overloaded method to allow multiple types of parameters in what ever format the user needs. But all just call the primary method in the correct format
-    public static func RGBToHex(RGBcolor: RGBColor) -> String{
-        return RGBToHex(red: Int(RGBcolor.red), green: Int(RGBcolor.green), blue: Int(RGBcolor.blue))
+   //MARK: - RGB to X
+    public static func RGBToHex(Color: RGBColor) -> String{
+        return RGBToHex(red: Int(Color.red), green: Int(Color.green), blue: Int(Color.blue))
     }
     public static func RGBToHex(RGBString: String) -> String{
-        let rgbArray: [Int] = toRGBArray(RGBString: RGBString)
-        return RGBToHex(red: rgbArray[0], green: rgbArray[1], blue: rgbArray[2])
+        let ColorArray: [Int] = toColorArray(ColorString: RGBString)
+        if ColorArray.count != 3{
+            print(ColorError.RGBFormattingError(Error: "RGB string does not contain 3 values"))
+            return ""
+        }
+        return RGBToHex(red: ColorArray[0], green: ColorArray[1], blue: ColorArray[2])
     }
    public static func RGBToHex(red: Int, green: Int, blue: Int) -> String {
         var hexValue: String = "#"
@@ -45,24 +46,35 @@ public struct ColorTool {
         }
         return hexValue
     }
-    //MARK: - RBG To CMYK
+    
+    public static func RGBToCMYK(RGBString: String) -> String{
+        let ColorArray: [Int] = toColorArray(ColorString: RGBString)
+        if ColorArray.count != 3{
+            print(ColorError.RGBFormattingError(Error: "CMYK string does not contain 3 values"))
+            return ""
+        }
+        return RGBToCMYK(red: ColorArray[0], green: ColorArray[1], blue: ColorArray[2])
+    }
+    public static func RGBToCMYK(Color: RGBColor) -> String{
+        return RGBToCMYK(red: Int(Color.red), green: Int(Color.green), blue: Int(Color.blue))
+    }
     public static func RGBToCMYK(red: Int, green: Int, blue: Int)->String{
         var redC: Double
         var greenC: Double
         var blueC: Double
-        if(0..<256 ~= red){
+        if(0...255 ~= red){
             redC = (Double(red)/255) * 100
         } else {
             print(ColorError.RGBOutOfBoundsError(Error: "red value is not between 0 and 255"))
             return ""
         }
-        if(0..<256 ~= green){
+        if(0...255 ~= green){
             greenC = (Double(green)/255) * 100
         } else {
            print(ColorError.RGBOutOfBoundsError(Error: "green value is not between 0 and 255"))
             return ""
         }
-        if(0..<256 ~= blue){
+        if(0...255 ~= blue){
             blueC = (Double(blue)/255) * 100
         } else {
           print(ColorError.RGBOutOfBoundsError(Error: "blue value is not between 0 and 255"))
@@ -87,7 +99,7 @@ public struct ColorTool {
     //MARK: - HEX to X
     
     public static func HexToRGB(Hex: String) -> String{
-        if (!(6..<11 ~= Hex.count)){
+        if (!(6...12 ~= Hex.count)){
             //hex string format is not FFFFFF or #FFFFFF or 0xFFFFFF or #0xFFFFFF
             print(ColorError.HEXFormattingError(Error: "Hex string is not formatted correctly"))
             return ""
@@ -130,7 +142,7 @@ public struct ColorTool {
     
     public static func HexToCMYK(Hex: String) -> String{
         //first convert hex to RGBstring and then to RGBarray
-        let rgbArray : [Int] = toRGBArray(RGBString: HexToRGB(Hex: Hex))
+        let rgbArray : [Int] = toColorArray(ColorString: HexToRGB(Hex: Hex))
         //convert rgb to CMYK
         return RGBToCMYK(red: rgbArray[0], green: rgbArray[1], blue: rgbArray[2])
         
@@ -138,14 +150,6 @@ public struct ColorTool {
     
     
     //MARK: - CMYK to X
-    public static func toCMYKArray(CMYKString: String) -> [Int]{
-        let CMYKStringArray : [String] = CMYKString.components(separatedBy: ",")
-        var CYMKIntArray : [Int] = []
-        for val in CMYKStringArray{
-            CYMKIntArray.append(Int(val)!)
-        }
-        return CYMKIntArray
-    }
     public static func CMYKToRGB(C: Int, M: Int, Y: Int, K: Int) -> String{
         var r: Double
         var g: Double
@@ -173,6 +177,14 @@ public struct ColorTool {
             return ""
         }
         return String(format:"%03.0f,%03.0f,%03.0f", r,g,b)
+    }
+    public static func CMYKToRGB(ColorString: String) -> String{
+        let ColorArray : [Int] = toColorArray(ColorString: ColorString)
+        if ColorArray.count != 4{
+            print(ColorError.CMYKFormattingError(Error: "CMYK string does not contain 4 values"))
+            return ""
+        }
+        return CMYKToRGB(C: ColorArray[0], M: ColorArray[1], Y: ColorArray[2], K: ColorArray[3])
     }
     public static func CMYKToHex(C: Int, M: Int, Y: Int, K: Int) -> String{
         return RGBToHex(RGBString: CMYKToRGB(C: C, M: M, Y: Y, K: K))
