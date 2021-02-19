@@ -86,7 +86,7 @@ public struct ColorTool {
     
     //MARK: - HEX to X
     
-    public static func HexToRGBString(hex: String) -> String{
+    public static func HexToRGB(hex: String) -> String{
         if (!(6..<11 ~= hex.count)){
             //hex string format is not FFFFFF or #FFFFFF or 0xFFFFFF or #0xFFFFFF
             print(ColorError.HEXFormattingError(Error: "Hex string is not formatted correctly"))
@@ -128,9 +128,9 @@ public struct ColorTool {
         return "\(r),\(g),\(b)"
     }
     
-    public static func HexToCMYKString(Hex: String) -> String{
+    public static func HexToCMYK(Hex: String) -> String{
         //first convert hex to RGBstring and then to RGBarray
-        let rgbArray : [Int] = toRGBArray(RGBString: HexToRGBString(hex: Hex))
+        let rgbArray : [Int] = toRGBArray(RGBString: HexToRGB(hex: Hex))
         //convert rgb to CMYK
         return RGBToCMYK(red: rgbArray[0], green: rgbArray[1], blue: rgbArray[2])
         
@@ -146,7 +146,7 @@ public struct ColorTool {
         }
         return CYMKIntArray
     }
-    public static func CMYKToRGBString(C: Int, M: Int, Y: Int, K: Int) -> String{
+    public static func CMYKToRGB(C: Int, M: Int, Y: Int, K: Int) -> String{
         var r: Double
         var g: Double
         var b: Double
@@ -175,7 +175,7 @@ public struct ColorTool {
         return String(format:"%03.0f,%03.0f,%03.0f", r,g,b)
     }
     public static func CMYKToHex(C: Int, M: Int, Y: Int, K: Int) -> String{
-        return RGBToHex(RGBString: CMYKToRGBString(C: C, M: M, Y: Y, K: K))
+        return RGBToHex(RGBString: CMYKToRGB(C: C, M: M, Y: Y, K: K))
     }
 
     
