@@ -17,7 +17,7 @@ Currently ColorTool supports:
 * CMYK to Hex
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->Hex(String)
  
-    *More options coming soon and features*
+    *More options and features coming soon*
     
     ColorTool has built in error management to ensure a user is within the correct bounds. If the parameters are not valid it will print the error to the console.
 
