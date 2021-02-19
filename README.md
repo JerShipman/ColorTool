@@ -44,19 +44,19 @@ To get access to RGB String or CMYK String as an array just call the toRGBArray(
 ```swift
 ColorTool.ToRGBArray("255,255,255") 
 // returns [255, 255, 255]
-// where the output is RGBarray[0] = Red, RGBarray[1] = Green. and RGBarray[2] = Blue
+// where the output is Red = RGBarray[0], Green = RGBarray[1], and Blue = RGBarray[2]
 ```
 or if you need to do a conversion first before passing a string.
 ```swift
 ColorTool.toRGBArray(RGBString: ColorTool.CMYKToRGB(C: 0, M: 68, Y: 76, K: 47))
 // returns [135, 43, 32]
-// where the output is RGBarray[0] = Red, RGBarray[1] = Green. and RGBarray[2] = Blue
+// where the output is  Red = RGBarray[0], Green = RGBarray[1], and Blue = RGBarray[2]
 ```
 **to CMYK array**
 ```swift
 ColorTool.toCMYKArray(CMYKString: ColorTool.HexToCMYK(Hex: "#FFFFFF"))
 // returns [0, 0, 0, 0]
-// where the output is CMYKarray[0] = Cyan, CMYKarray[1] = Magenta, CMYKarray[2] = Yellow, and CMYKarray[3] = Black
+// where the output is Cyan = CMYKarray[0], Magenta = CMYKarray[1], Yellow = CMYKarray[2], and Black = CMYKarray[3]
 ```
 ## Installing ColorTool
 It's easier to install the ColorTool package to your XCode project than baking an apple pie. *Seriously*
