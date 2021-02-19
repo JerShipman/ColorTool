@@ -86,8 +86,8 @@ public struct ColorTool {
     
     //MARK: - HEX to X
     
-    public static func HexToRGB(hex: String) -> String{
-        if (!(6..<11 ~= hex.count)){
+    public static func HexToRGB(Hex: String) -> String{
+        if (!(6..<11 ~= Hex.count)){
             //hex string format is not FFFFFF or #FFFFFF or 0xFFFFFF or #0xFFFFFF
             print(ColorError.HEXFormattingError(Error: "Hex string is not formatted correctly"))
             return ""
@@ -97,7 +97,7 @@ public struct ColorTool {
         var g = ""
         var b = ""
         func extractRGB(indexAdjust: Int){
-            for (index, color) in hex.enumerated() {
+            for (index, color) in Hex.enumerated() {
                 switch index {
                     case indexAdjust...indexAdjust+1:
                         r += String(color)
@@ -110,13 +110,13 @@ public struct ColorTool {
                 }
             }
         }
-        if (hex.lowercased().hasPrefix("#0x") || hex.lowercased().hasPrefix("#0b")) && (hex.count == 9){
+        if (Hex.lowercased().hasPrefix("#0x") || Hex.lowercased().hasPrefix("#0b")) && (Hex.count == 9){
             extractRGB(indexAdjust: 3)
-        }else if (hex.lowercased().hasPrefix("0x") || hex.lowercased().hasPrefix("0b")) && (hex.count == 8){
+        }else if (Hex.lowercased().hasPrefix("0x") || Hex.lowercased().hasPrefix("0b")) && (Hex.count == 8){
           extractRGB(indexAdjust: 2)
-        }else if (hex.hasPrefix("#") && (hex.count == 7)){
+        }else if (Hex.hasPrefix("#") && (Hex.count == 7)){
             extractRGB(indexAdjust: 1)
-        }else if (hex.count == 6){
+        }else if (Hex.count == 6){
            extractRGB(indexAdjust: 0)
         }else{
             print(ColorError.HEXFormattingError(Error: "Hex string is not formatted correctly or is out of bounds. To fix format hex like #0xFFFFFF or #FFFFFF or FFFFFF"))
@@ -130,7 +130,7 @@ public struct ColorTool {
     
     public static func HexToCMYK(Hex: String) -> String{
         //first convert hex to RGBstring and then to RGBarray
-        let rgbArray : [Int] = toRGBArray(RGBString: HexToRGB(hex: Hex))
+        let rgbArray : [Int] = toRGBArray(RGBString: HexToRGB(Hex: Hex))
         //convert rgb to CMYK
         return RGBToCMYK(red: rgbArray[0], green: rgbArray[1], blue: rgbArray[2])
         
