@@ -1,6 +1,7 @@
 # ColorTool
 This is a nice Swift package that allows users to convert color types to other color types.
-Currently ColorTool supports:*More options coming soon and features*
+Currently ColorTool supports: 
+
 * RGB to Hex
     * RBG(String) -> Hex(String)
     * RGB(Red: Int, Green: Int, Blue: Int) -> Hex(String)
@@ -15,6 +16,8 @@ Currently ColorTool supports:*More options coming soon and features*
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->RGB(String)
 * CMYK to Hex
     * CMYK(C: Int, M:Int, Y:Int, K:Int) ->Hex(String)
+ 
+    *More options coming soon and features*
     
     ColorTool has built in error management to ensure a user is within the correct bounds. If the parameters are not valid it will print the error to the console.
 
