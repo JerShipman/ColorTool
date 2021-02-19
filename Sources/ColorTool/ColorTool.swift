@@ -95,6 +95,9 @@ public struct ColorTool {
         let y = Int(round((100 - blueC - k) / (100 - k) * 100))
         return("\(c),\(m),\(y),\(kInt)" )
     }
+    public static func RGBToCMYKArray(red: Int, green: Int, blue: Int)->[Int]{
+        return toColorArray(ColorString: RGBToCMYK(red: red, green: green, blue: blue))
+    }
     
     //MARK: - HEX to X
     

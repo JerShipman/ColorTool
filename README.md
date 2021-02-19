@@ -7,6 +7,7 @@ Currently ColorTool supports:
     * RBG(String) -> Hex(String)
     * RGB(RGBColor) -> Hex(String)
 * RGB to CMYK
+    * RGB(Red: Int, Green: Int, Blue: Int) -> CMYK([IntArray])
     * RGB(Red: Int, Green: Int, Blue: Int) -> CMYK(String)
     * RGB(String) -> CMYK(String)
     * RGB(RGBColor) -> CMYK(String)
@@ -43,6 +44,12 @@ ColorTool.RGBToHex(RGBcolor: myColor)
 ```swift
 ColorTool.RGBToHex(RGBString: "11,24,156")
 // returns "#0B1838"
+```
+**Standard pass RGB to CMYK IntArray**
+```swift
+ColorTool.RGBToCMYKArray(red: 35, green: 42, blue: 65)
+// returns [46, 35, 0, 75]
+// where the output is Cyan = CMYKArray[0], Magenta = CMYKArray[1], Yellow = CMYKArray[2], and Black = CMYKArray[3]
 ```
 **To Color Array**
 To get convert a color string to a color array you will need to pass the string to the function ToColorArray
