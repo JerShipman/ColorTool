@@ -24,8 +24,6 @@ Currently ColorTool supports:
  
     *More options and features coming soon*
     
-    ColorTool has built in error management to ensure a user is within the correct bounds. If the parameters are not valid it will print the error to the console.
-
 ## Using ColorTool
 to make a call to a ColorTool function
 
